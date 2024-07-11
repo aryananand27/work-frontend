@@ -10,7 +10,7 @@ const Register = () => {
 
   
 const register=async()=>{
-  let result=await fetch('http://localhost:7000/register',{
+  let result=await fetch('https://demo-backend-zeta.vercel.app/register',{
     method:"Post",
     body:JSON.stringify({username,email,password}),
     headers:{

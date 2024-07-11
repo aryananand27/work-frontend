@@ -10,7 +10,7 @@ const Reset = () => {
 const params=useParams();
 
 const reset=async()=>{
-    let result=await fetch(`http://127.0.0.1:7000/reset/${params.id}/${params.token}`,{
+    let result=await fetch(`https://demo-backend-zeta.vercel.app/reset/${params.id}/${params.token}`,{
       method:"Post",
       body:JSON.stringify({password}),
       headers:{
