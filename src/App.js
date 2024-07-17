@@ -7,6 +7,7 @@ import Register from './components/Register'
 import Forgot from './components/Forgot'
 import Reset from './components/Reset'
 import {Box} from '@mui/material'
+import Posts from './components/Posts'
 
 
 
@@ -21,6 +22,7 @@ const App = () =>(
                 <Route path='/' element={<Home/>}/>
                 <Route path='/signin' element={<SignIn/>}/>
                 <Route path='/register' element={<Register/>}/>
+                <Route path='/posts' element={<Posts/>}/>
                 <Route path='/forgot-password' element={<Forgot/>}/>
                 <Route path='/reset/:id/:token' element={<Reset/>}/>
             </Routes>

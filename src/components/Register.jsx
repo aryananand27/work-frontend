@@ -10,7 +10,7 @@ const Register = () => {
 
   
 const register=async()=>{
-  let result=await fetch('https://demo-backend-zeta.vercel.app/register',{
+  let result=await fetch('http://localhost:8000/register',{
     method:"Post",
     body:JSON.stringify({username,email,password}),
     headers:{
@@ -53,7 +53,7 @@ const register=async()=>{
         <input type='password' value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder='Enter your Password'/>
         <br />
         <button className='regbtn'  onClick={register}>Create Account</button>
-        <p>Already have an account?? <Link to='/signin'><a style={{color:"rgb(28, 160, 212)"}}>LOG IN</a></Link></p>
+        <p>Already have an account?? <Link to='/signin'>LOG IN</Link></p>
     </div>
 </div>
   )

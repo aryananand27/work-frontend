@@ -6,10 +6,11 @@ import { toast } from 'react-toastify';
 const SignIn = () => {
   const[username,setUserName]=useState("");
   const[password,setPassword]=useState("");
+  const [url,setUrl]=useState("");
   const navigate=useNavigate();
 
 const login=async()=>{
-    let result=await fetch('https://demo-backend-zeta.vercel.app/login',{
+    let result=await fetch('http://localhost:8000/login',{
       method:"Post",
       body:JSON.stringify({username,password}),
       headers:{
@@ -32,7 +33,6 @@ const login=async()=>{
    
 }
 
-
   return (
    
     <div className="main-container">
@@ -45,7 +45,6 @@ const login=async()=>{
         <br />
         <input type='password' value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder='Enter your Password'/>
         <br />
-      
        <br/>
         <button className='regbtn' onClick={login} >SignIn</button>
         <p><Link to='/forgot-password'><a style={{color:"rgb(28, 160, 212)"}}>Forgot Password?</a></Link></p>
