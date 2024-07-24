@@ -10,7 +10,7 @@ const SignIn = () => {
   const navigate=useNavigate();
 
 const login=async()=>{
-    let result=await fetch('http://localhost:8000/login',{
+    let result=await fetch('https://work-backend-seven.vercel.app/login',{
       method:"Post",
       body:JSON.stringify({username,password}),
       headers:{

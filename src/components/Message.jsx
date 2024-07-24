@@ -27,7 +27,7 @@ export default function AccountMenu({ele}) {
   const handleClick = async(event) => {
     setAnchorEl(event.currentTarget);
     const token=JSON.parse(sessionStorage.getItem('user')).token;
-    let result=await fetch(`http://localhost:8000/getpost/${ele._id}`,{
+    let result=await fetch(`https://work-backend-seven.vercel.app/getpost/${ele._id}`,{
         method:"Get",
         headers:{
           "authorization":`bearer ${token}`,

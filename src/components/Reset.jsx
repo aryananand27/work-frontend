@@ -5,12 +5,12 @@ import { toast } from 'react-toastify';
 
 const Reset = () => {
  
-  const[password,setPassword]=useState("");
-  const navigate=useNavigate();
+const[password,setPassword]=useState("");
+const navigate=useNavigate();
 const params=useParams();
 
 const reset=async()=>{
-    let result=await fetch(`http://localhost:8000/reset/${params.id}/${params.token}`,{
+    let result=await fetch(`https://work-backend-seven.vercel.app/reset/${params.id}/${params.token}`,{
       method:"Post",
       body:JSON.stringify({password}),
       headers:{

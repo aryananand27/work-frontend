@@ -24,7 +24,7 @@ const handlePost=async()=>{
   }
  const token=JSON.parse(sessionStorage.getItem('user')).token;
   
-  let result=await fetch('http://localhost:8000/posts',{
+  let result=await fetch('https://work-backend-seven.vercel.app/posts',{
     method:"Post",
     body:JSON.stringify({userId,name,image,likecount,title,date,comments}),
     headers:{
@@ -58,7 +58,7 @@ const handlePost=async()=>{
   setLoad(true);
     
     try {
-      const response = await axios.post('http://localhost:8000/upload', formData, {
+      const response = await axios.post('https://work-backend-seven.vercel.app/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

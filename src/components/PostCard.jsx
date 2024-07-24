@@ -15,7 +15,7 @@ const PostCard = ({ele} ) => {
     let counterContext=useContext(CounterContext);
     const countLikes=async(id)=>{
         const token=JSON.parse(sessionStorage.getItem('user')).token;
-        let result=await fetch(`http://localhost:8000/likes/${id}`,{
+        let result=await fetch(`https://work-backend-seven.vercel.app/likes/${id}`,{
             method:"Put",
             headers:{
                 "authorization":`bearer ${token}`,
@@ -35,7 +35,7 @@ const PostCard = ({ele} ) => {
     }
 const countDisLikes=async(id)=>{
     const token=JSON.parse(sessionStorage.getItem('user')).token;
-    let result=await fetch(`http://localhost:8000/dislikes/${id}`,{
+    let result=await fetch(`https://work-backend-seven.vercel.app/dislikes/${id}`,{
         method:"Put",
         headers:{
                 "authorization":`bearer ${token}`,
@@ -61,7 +61,7 @@ const countDisLikes=async(id)=>{
             message=newComment;
         }
         
-        let result=await fetch(`http://localhost:8000/messages/${id}`,{
+        let result=await fetch(`https://work-backend-seven.vercel.app/messages/${id}`,{
             method:"Put",
             body:JSON.stringify({name,message}),
             headers:{

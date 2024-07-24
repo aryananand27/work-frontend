@@ -12,7 +12,7 @@ const forgot=async()=>{
    
         
   
-    let result=await fetch('http://localhost:8000/forgot-password',{
+    let result=await fetch('https://work-backend-seven.vercel.app/forgot-password',{
       method:"Post",
       body:JSON.stringify({email}),
       headers:{

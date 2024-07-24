@@ -14,7 +14,7 @@ const Home = () => {
          token=auth.token;
       }
     
-    let result=await fetch('http://localhost:8000/getposts',{
+    let result=await fetch('https://work-backend-seven.vercel.app/getposts',{
       method:"Get",
       headers:{
       "authorization":`bearer ${token}`,
