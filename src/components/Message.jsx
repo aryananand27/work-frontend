@@ -22,19 +22,27 @@ export default function AccountMenu({ele}) {
   let counterContext=React.useContext(CounterContext);
 
   let auth=JSON.parse(sessionStorage.getItem('user'));
-
+  
   const open = Boolean(anchorEl);
   const handleClick = async(event) => {
     setAnchorEl(event.currentTarget);
+    const token=JSON.parse(sessionStorage.getItem('user')).token;
     let result=await fetch(`http://localhost:8000/getpost/${ele._id}`,{
         method:"Get",
-      headers:{
-        'Content-Type':"application/json"
-      }
+        headers:{
+          "authorization":`bearer ${token}`,
+          "Content-Type":"application/json"
+        }
     })
     result=await result.json();
-    setAllComments(result.comments);
+    if(result.reslt){
+      alert(`${result.reslt}`)
+    }
+    else{
+      setAllComments(result.comments);
     counterContext.setCount(allComments.length);
+    }
+    
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -102,7 +110,7 @@ export default function AccountMenu({ele}) {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-      {allComments&&allComments.length>0?<>
+      {allComments && allComments.length>0?<>
       {  allComments.map((ele)=>(
             <MenuItem>
                 <h4 style={{fontFamily:" 'Baloo Bhai 2', sans-serif",color:"white"}}>{auth.result.username===ele.name ?`You`: `${ele.name}` }: &nbsp;</h4>

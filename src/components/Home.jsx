@@ -7,12 +7,20 @@ const Home = () => {
   const [postArr,setPostArr]=useState([]);
   let auth=JSON.parse(sessionStorage.getItem('user'));
   const counterContext=useContext(CounterContext);
+  
   const getdata=async()=>{
+    let token;
+      if(auth){
+         token=auth.token;
+      }
+    
     let result=await fetch('http://localhost:8000/getposts',{
       method:"Get",
       headers:{
-        'Content-Type':"application/json"
-      }
+      "authorization":`bearer ${token}`,
+      "Content-Type":"application/json"
+   
+    }
     })
     result=await result.json();
     if(result){

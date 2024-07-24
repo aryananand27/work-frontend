@@ -14,35 +14,48 @@ const PostCard = ({ele} ) => {
     let message,name;
     let counterContext=useContext(CounterContext);
     const countLikes=async(id)=>{
+        const token=JSON.parse(sessionStorage.getItem('user')).token;
         let result=await fetch(`http://localhost:8000/likes/${id}`,{
             method:"Put",
             headers:{
+                "authorization":`bearer ${token}`,
                 "Content-Type":"application/json"
-            }
+       
+        }
         })
         setDislike(!dislike);
         result=await result.json();
-        if(result.acknowledged){
+        if(result.reslt){
+            alert(`${result.reslt}`);
+        }
+       else if(result.acknowledged){
             counterContext.setCount(counterContext.count+1);
             alert(`You liked ${ele.name}'s post.`)
         }
     }
 const countDisLikes=async(id)=>{
+    const token=JSON.parse(sessionStorage.getItem('user')).token;
     let result=await fetch(`http://localhost:8000/dislikes/${id}`,{
         method:"Put",
         headers:{
-            "Content-Type":"application/json"
+                "authorization":`bearer ${token}`,
+                "Content-Type":"application/json"
+       
         }
     })
     setDislike(!dislike);
     result=await result.json();
-    if(result.acknowledged){
+    if(result.reslt){
+        alert(`${result.reslt}`);
+    }
+    else if(result.acknowledged){
         counterContext.setSubCount(counterContext.subcount+1);
         alert(`You disliked ${ele.name}'s post.`)
     }
 }
 
     const addComment=async(id)=>{
+        const token=JSON.parse(sessionStorage.getItem('user')).token;
         if(auth && auth.result){
             name=auth.result.username;
             message=newComment;
@@ -52,12 +65,16 @@ const countDisLikes=async(id)=>{
             method:"Put",
             body:JSON.stringify({name,message}),
             headers:{
+                "authorization":`bearer ${token}`,
                 "Content-Type":"application/json"
-            }
+        }
         })
         result=await result.json();
-      console.log(result);
-        if(result.result.acknowledged){
+    
+        if(result.reslt){
+            alert(`${result.reslt}`);
+        }
+        else if(result.result.acknowledged){
             alert("comment added.");
             setNewComment("");
         }

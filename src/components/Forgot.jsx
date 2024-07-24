@@ -12,7 +12,7 @@ const forgot=async()=>{
    
         
   
-    let result=await fetch('https://demo-backend-zeta.vercel.app/forgot-password',{
+    let result=await fetch('http://localhost:8000/forgot-password',{
       method:"Post",
       body:JSON.stringify({email}),
       headers:{

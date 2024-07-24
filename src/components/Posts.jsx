@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Posts = () => {
+  console.log(`bearer ${JSON.parse(sessionStorage.getItem('user')).token}`)
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileUrl, setFileUrl] = useState('');
   const [load,setLoad]=useState(false);
@@ -21,13 +22,15 @@ const handlePost=async()=>{
     likecount=0;
     date=new Date().toDateString();
   }
- 
-  console.log(userId,name,image,likecount,title,date,comments);
+ const token=JSON.parse(sessionStorage.getItem('user')).token;
+  
   let result=await fetch('http://localhost:8000/posts',{
     method:"Post",
     body:JSON.stringify({userId,name,image,likecount,title,date,comments}),
     headers:{
-      'Content-Type':"application/json"
+      "authorization":`bearer ${token}`,
+      "Content-Type":"application/json"
+   
     }
   })
   result=await result.json();
@@ -35,7 +38,10 @@ const handlePost=async()=>{
     navigate('/');
   }
   else{
-    if(result.error){
+    if(result.reslt){
+      alert(`${result.reslt}`);
+  }
+  else if(result.error){
         alert(`${result.error}`);
     }
   }
